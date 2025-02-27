@@ -10,17 +10,16 @@ const Theme = dynamic(() => import("./Theme"), { ssr: false });
 const Header = () => {
   const [search, setSearch] = useState("");
   const Router = useRouter();
-  const searchFunction = (e) => {
-    if (e.key === "Enter" && search.length > 2) {
+
+  const searchFunction = () => {
+    if (search.length > 2) {
       Router.push(`/search/${search}`);
     }
   };
-
   const menu = [
     { name: "About", url: "/about" },
     { name: "Sign In", url: "/login" },
   ];
-
   return (
     <header className="flex items-center">
       <h1 className="text-xl font-bold flex-1">
@@ -29,12 +28,12 @@ const Header = () => {
       <div className="flex items-center m-3 flex-1 border-2 border-gray-600 rounded-lg">
         <input
           onChange={(e) => setSearch(e.target.value)}
-          onKeyDown={searchFunction}
+          onKeyDown={(e) => e.key === "Enter" && searchFunction()}
           type="text"
           placeholder="Search"
           className="m-1 p-1 rounded-lg flex-1 outline-none border-gray-600"
         />
-        <FaSearch className="mr-3 cursor-pointer" />
+        <FaSearch onClick={searchFunction} className="mr-3 cursor-pointer" />
       </div>
       <div className="flex flex-1 justify-end">
         <Theme />

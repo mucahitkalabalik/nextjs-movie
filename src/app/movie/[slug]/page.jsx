@@ -25,7 +25,6 @@ export const Page = async ({ params }) => {
           height={100}
           className="my-5"
         />
-        {res?.poster_path}
         {res?.poster_path && (
           <Image
             src={`https://image.tmdb.org/t/p/w500/${res?.poster_path}`}

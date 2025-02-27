@@ -10,7 +10,7 @@ export const Movies = (props) => {
     <div
       onClick={() => router.push(`/movie/${props.movie.id}`)}
       key={props.movie.id}
-      className="m-4 cursor-pointer"
+      className="m-4 cursor-pointer max-w-[250px] rounded-lg shadow-lg"
     >
       <h5>{props.movie.title}</h5>
       {props.movie.poster_path && (
